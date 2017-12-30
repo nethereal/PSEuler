@@ -15,6 +15,16 @@ function isPalindrome($number) {
     else { $false }
 }
 
-for ($a = $numberA; $a -gt 0; $a = $a - 1) {
+$results = @()
 
+for ($a = $numberA; $a -gt 0; $a = $a - 1) {
+    for ($b = $numberB; $b -gt 0; $b = $b - 1) {
+        $val = $b * $a
+        if (isPalindrome $val) {
+            $results = $results + $val
+        }
+    }
 }
+
+$results = $results | Select-Object -Unique | Sort-Object -Descending
+$results[0]
